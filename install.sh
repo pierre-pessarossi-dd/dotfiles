@@ -23,6 +23,11 @@ if ! command -v starship &> /dev/null; then
     curl -sS https://starship.rs/install.sh | sh -s -- -y
 fi
 
+echo "==> Installing uv..."
+if ! command -v uv &> /dev/null; then
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+fi
+
 echo "==> Symlinking dotfiles..."
 find $DOTFILES_PATH -type f -path "$DOTFILES_PATH/.*" | while read df; do
     link=${df/$DOTFILES_PATH/$HOME}

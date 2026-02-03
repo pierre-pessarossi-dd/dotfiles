@@ -1,0 +1,104 @@
+{
+  "permissions": {
+    "allow": [
+      "Read",
+      "Edit",
+      "Write",
+      "Update",
+      "WebFetch",
+      "Explore",
+      "Bash",
+      "mcp__atlassian__*",
+      "Bash(git add:*)",
+      "Bash(git branch:*)",
+      "Bash(git checkout:*)",
+      "Bash(git commit:*)",
+      "Bash(git config:*)",
+      "Bash(git dd sync)",
+      "Bash(git diff:*)",
+      "Bash(git fetch:*)",
+      "Bash(git log:*)",
+      "Bash(git rebase:*)",
+      "Bash(git remote:*)",
+      "Bash(git show:*)",
+      "Bash(git stash:*)",
+      "Bash(git status:*)",
+      "Bash(git switch:*)",
+      "Bash(git restore:*)",
+      "Bash(git mv:*)",
+      "Bash(git pull:*)",
+      "Bash(pants fmt:*)",
+      "Bash(gh checkout:*)",
+      "Bash(gh repo: *)",
+      "Bash(gh pr:*)",
+      "Bash(python:*)",
+      "Bash(uv run python:*)",
+      "Bash(pants test:*)",
+      "Bash(pants generate-lockfiles *)",
+      "Read(//Users/pierre.pessarossi/Downloads/**)",
+      "Bash(pants dependencies:*)",
+      "mcp__atlassian__fetch",
+      "mcp__atlassian__getAccessibleAtlassianResources",
+      "mcp__atlassian__getJiraIssue",
+      "Bash(git dd:*)",
+      "mcp__datadog__search_datadog_dashboards",
+      "mcp__datadog__get_datadog_metric",
+      "mcp__datadog__search_datadog_metrics",
+      "mcp__datadog__search_datadog_logs",
+      "mcp__datadog__search_datadog_rum_events",
+      "Bash(tee:*)",
+      "Bash(for org_id in 11287 144786 596323 247070 1286982 1445324)",
+      "Bash(do)",
+      "Bash(echo:*)",
+      "Bash(bzl run:*)",
+      "Bash(done)",
+      "Bash(for org_id in 2 11287 144786 1445324)",
+      "Bash(for org_id in 1000018845 1000055990 1300693474 1000002301 1200437253 1000638094)",
+      "Bash(for org_id in 1000018845 1000002301 1000638094)",
+      "Bash(source:*)",
+      "Bash(python3:*)",
+      "Bash(ls:*)",
+      "mcp__github__pull_request_read",
+      "mcp__github__get_file_contents"
+    ],
+    "defaultMode": "dontAsk"
+  },
+  "model": "opus",
+  "hooks": {
+    "Notification": [
+      {
+        "matcher": "permission_prompt|idle_prompt|elicitation_dialog",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "terminal-notifier -title \"Claude Code\" -message \"👋 Need your input\" -sound Ping"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "terminal-notifier -title \"Claude Code\" -message \"✅ Task completed\" -sound Glass"
+          }
+        ]
+      }
+    ]
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "npx -y ccstatusline@latest",
+    "padding": 0
+  },
+  "enabledPlugins": {
+    "code-review@claude-plugins-official": true,
+    "pr-review-toolkit@claude-plugins-official": true,
+    "atlassian@claude-plugins-official": true,
+    "huggingface-skills@claude-plugins-official": true,
+    "atlassian-remote-mcp@datadog-claude-plugins": true,
+    "dd@datadog-claude-plugins": true,
+    "code-simplifier@claude-plugins-official": true
+  }
+}

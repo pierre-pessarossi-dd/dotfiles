@@ -35,4 +35,21 @@ find $DOTFILES_PATH -type f -path "$DOTFILES_PATH/.*" | while read df; do
     ln -sf "$df" "$link"
 done
 
+echo "==> Cloning Datadog repos..."
+DATADOG_ROOT="$HOME/dd"
+mkdir -p "$DATADOG_ROOT"
+[ ! -d "$DATADOG_ROOT/dd-analytics" ] && \
+    git clone git@github.com:DataDog/dd-analytics.git "$DATADOG_ROOT/dd-analytics"
+[ ! -d "$DATADOG_ROOT/data-science" ] && \
+    git clone git@github.com:DataDog/data-science.git "$DATADOG_ROOT/data-science"
+
+echo "==> Installing Claude Code..."
+curl -fsSL https://claude.ai/install.sh | bash
+
+echo "==> Setting up dd-analytics toolbox..."
+if [ ! -d "$DATADOG_ROOT/data-eng-tools" ]; then
+    git clone git@github.com:DataDog/data-eng-tools.git "$DATADOG_ROOT/data-eng-tools"
+fi
+cd "$DATADOG_ROOT/data-eng-tools" && git pull && ./ansible/setup.sh
+
 echo "==> Dotfiles setup complete!"

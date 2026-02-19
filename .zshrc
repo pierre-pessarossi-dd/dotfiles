@@ -11,10 +11,14 @@ source $ZSH/oh-my-zsh.sh
 
 # Point GOPATH to go sources
 export GOPATH="$HOME/go"
-export PATH="$GOPATH/bin:$PATH"
+export PATH="$HOME/.local/bin:$GOPATH/bin:$PATH"
 
 # Point DATADOG_ROOT
 export DATADOG_ROOT="$HOME/dd"
+
+# Default editor
+export EDITOR=vim
+export VISUAL=vim
 
 # Go configuration
 export GO111MODULE=auto
@@ -49,3 +53,4 @@ bindkey '^b' _fzf_complete_git
 # Enable autocompletion
 autoload -U compinit
 compinit
+alias ddpants='/home/bits/go/src/github.com/DataDog/dd-analytics/scripts/pants.sh'

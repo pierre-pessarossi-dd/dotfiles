@@ -46,10 +46,14 @@ mkdir -p "$DATADOG_ROOT"
 echo "==> Installing Claude Code..."
 curl -fsSL https://claude.ai/install.sh | bash
 
-echo "==> Setting up dd-analytics toolbox..."
-if [ ! -d "$DATADOG_ROOT/data-eng-tools" ]; then
-    git clone git@github.com:DataDog/data-eng-tools.git "$DATADOG_ROOT/data-eng-tools"
+echo "==> Installing pants..."
+curl --proto '=https' --tlsv1.2 -fsSL https://static.pantsbuild.org/setup/get-pants.sh | bash
+sudo mkdir -p /opt/homebrew/bin
+sudo ln -sf "$HOME/.local/bin/pants" /opt/homebrew/bin/pants
+
+echo "==> Setting up ddpants alias..."
+if ! grep -q "ddpants" "$HOME/.zshrc"; then
+    echo "alias ddpants='\${DATADOG_ROOT}/dd-analytics/scripts/pants.sh'" >> "$HOME/.zshrc"
 fi
-cd "$DATADOG_ROOT/data-eng-tools" && git pull && ./ansible/setup.sh
 
 echo "==> Dotfiles setup complete!"
